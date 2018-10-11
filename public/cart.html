@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/public/stylesheets/cart.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Cart</h2>
+        <p></p>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name Product</th>
+                        <th>Price $</th>
+                        <th>Quantity</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="hasil">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script async>
+        (async () => {
+
+            let data = JSON.parse(localStorage.getItem('cart'));
+
+            console.log(data)
+            
+            data.map(x => {
+                $('#hasil').append(` 
+                <tr>
+                    <td>${x.nameProduct}</td>
+                    <td>${x.price}</td>
+                    <td>${x.stock}</td>
+                </tr>`)
+            })
+        })()
+
+    </script>
+
+</body>
+
+</html>

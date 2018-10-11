@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>post</title>
+    <link rel="stylesheet" href="/public/stylesheets/post.css">
+</head>
+
+<body>
+    <div class="login-box">
+        <div class="login-form">
+            <!-- <h1>Please Login</h1> -->
+            
+            <input class="txtb" type="text" name="" placeholder="NameProduct" id="NameProduct">
+            <input class="txtb" type="text" name="" placeholder="Price" id="Price">
+            <input class="txtb" type="text" name="" placeholder="Stock" id="Stock">
+            <input class="txtb" type="text" name="" placeholder="Brand" id="Brand">
+            <input class="txtb" type="text" name="" placeholder="Type" id="Type">
+            <input class="txtb" type="text" name="" placeholder="Roast" id="Roast">
+            <input class="txtb" type="text" name="" placeholder="Weight" id="Weight">
+            <input class="txtb" type="text" name="" placeholder="Image" id="Image">
+            
+       <a href="dashboard.html"> <button class="login-btn" id="btnadd">SUBMIT</button></a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+
+    <script>
+        const kirim = document.getElementById('btnadd')
+        console.log(kirim)
+ 
+            kirim.addEventListener('click', async() => {
+                const NameProduct = document.getElementById('NameProduct').value
+                const Price = document.getElementById('Price').value
+                const Stock = document.getElementById('Stock').value
+                const Brand = document.getElementById('Brand').value
+                const Type = document.getElementById('Type').value
+                const Roast = document.getElementById('Roast').value
+                const Weight = document.getElementById('Weight').value
+                const Image = document.getElementById('Image').value
+
+                // console.log('NameProduct')
+                try {
+                    const data = await axios.post('http://localhost:3000/api/postproduct', {
+                        nameProduct: NameProduct,
+                        price: Price,
+                        stock: Stock,
+                        brand: Brand,
+                        type:  Type,
+                        roast: Roast,
+                        weight: Weight,
+                        image: Image
+                    })
+                  // console.log(data)
+                } catch (error) {
+                    console.log(error)
+                }
+            })
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>seeer</title>
+    <link rel="stylesheet" href="/public/stylesheets/seeer.css">
+    <!-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
+</head>
+
+<body>
+    <div class="menu-icon">
+        <ul class="list">
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </div>
+    <h1>Paten Coffe Beans</h1>
+
+    <div class="flex">
+        <div><img src="/public/images/columbia.jpg" alt="">
+            <ul>
+                <li>Price : $ 40000</li>
+                <li>Brand : Otten</li>
+                <li>Type : Whiskey</li>
+                <li>Roast : Medium</li>
+                <li>Weight : 7000 gram</li>
+            </ul>
+            <button class="btn">+</button>
+        </div>
+
+        <div><img src="/public/images/costa.jpg" alt="">
+            <ul>
+                <li>Price : $ 90000</li>
+                <li>Brand : Otten</li>
+                <li>Type : Speciality</li>
+                <li>Roast : Medium</li>
+                <li>Weight : 700 gram</li>
+            </ul>
+            <button class="btn">+</button>
+        </div>
+
+        <div><img src="/public/images/el.jpg" alt="">
+            <ul>
+                <li>Price : $ 80000</li>
+                <li>Brand : Otten</li>
+                <li>Type : Wash</li>
+                <li>Roast : Medium</li>
+                <li>Weight : 700 gram</li>
+            </ul>
+            <button class="btn">+</button>
+        </div>
+
+        <div><img src="/public/images/et.jpg" alt="">
+            <ul>
+                <li>Price : $ 40000</li>
+                <li>Brand : Otten</li>
+                <li>Type : Honey</li>
+                <li>Roast : Medium</li>
+                <li>Weight : 450 gram</li>
+            </ul>
+            <button class="btn">+</button>
+        </div>
+
+        <div><img src="/public/images/gua.jpg" alt="">
+            <ul>
+                <li>Price : $ 30000</li>
+                <li>Brand : Otten</li>
+                <li>Type : Semi-Wash</li>
+                <li>Roast : Strong</li>
+                <li>Weight : 450 gram</li>
+            </ul>
+            <button class="btn">+</button>
+        </div>
+
+        <div><img src="/public/images/rwa.jpg" alt="">
+            <ul>
+                <li>Price : $ 50000</li>
+                <li>Brand : Otten</li>
+                <li>Type : Honey</li>
+                <li>Roast : Medium</li>
+                <li>Weight : 450 gram</li>
+            </ul>
+            <button class="btn">+</button>
+        </div>
+
+        <div><img src="/public/images/brazil.jpg" alt="">
+            <ul>
+                <li>Price : $ 50000</li>
+                <li>Brand : Otten</li>
+                <li>Type : Full Wash</li>
+                <li>Roast : Hard</li>
+                <li>Weight : 450 gram</li>
+            </ul>
+            <button class="btn" id="buy">+</button>
+        </div>
+
+        <div><img src="/public/images/tan.jpg" alt="">
+            <ul>
+                <li>Price : $ 40000</li>
+                <li>Brand : Otten</li>
+                <li>Type : Honey</li>
+                <li>Roast : Medium</li>
+                <li>Weight :450 gram</li>
+            </ul>
+            <button class="btn buy" data-price="40000" data-name='Tanzania' data-quantity="1">+</button>
+        </div>
+
+
+    </div>
+
+    <script async>
+
+        (async () => {
+
+            const buy = document.querySelectorAll(".btn")
+
+            buy.forEach(item => {
+                item.addEventListener('click', async (e) => {
+                    console.log(
+                        e.target.attributes['data-name'].value,
+                        e.target.attributes['data-price'].value,
+                        e.target.attributes['data-quantity'].value
+                    )
+                })
+            })
+
+            
+        })()
+
+    </script>
+</body>
+
+</html>

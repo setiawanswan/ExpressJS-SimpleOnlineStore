@@ -1,0 +1,39 @@
+table {
+    font-family: monospace;
+    border-collapse: collapse;
+    width: 100%;
+    
+    
+}
+h2{
+    font-family: monospace;
+    font-size: 30px;
+    text-align: center
+}
+
+.btn{
+
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #8B4513;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 16px;
+  padding: 10px;
+  width: 70px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+td, th {
+    border: 2.5px solid #dddddd;
+    text-align: left;
+    padding: 10px;
+    text-align: center
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}

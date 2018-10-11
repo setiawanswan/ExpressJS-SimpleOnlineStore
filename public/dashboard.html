@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>dashboard</title>
+    <link rel="stylesheet" href="/public/stylesheets/dashboard.css">
+</head>
+
+<body>
+
+    <h2>Inventory</h2>
+
+    <a href="post.html"><button class="btn">Post</button></a>
+    <button class="btn" id="logout">Logout</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name Product</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Brand</th>
+                <th>Type</th>
+                <th>Roast</th>
+                <th>Weight</th>
+                <th>Image</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody id="hasil">
+
+        </tbody>
+
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+
+    <script async>
+        (async () => {
+            const linkdel = 'http://localhost:3000/api/delproduct'
+            const link = 'http://localhost:3000/api/production'
+            const data = await axios.get(link, {
+                headers: {
+                    Authorization: localStorage.getItem('token')
+                }
+            })
+
+            const result = data.data
+            result.map(x => {
+                $('#hasil').append(`
+                <tr>
+                    <td>${x.nameProduct}</td>
+                    <td>${x.price}</td>
+                    <td>${x.stock}</td>
+                    <td>${x.brand}</td>
+                    <td>${x.type}</td>
+                    <td>${x.roast}</td>
+                    <td>${x.weight}</td>
+                    <td>${x.image}</td>
+                    <td><button type="button" class="btn"> Edit </button> <button type="button" class="btn" id="hapus-${x.id}">Delete</td><button>
+                    </tr> `)
+
+                const del = document.getElementById(`hapus-${x.id}`)
+
+                del.addEventListener('click', async () => {
+                    await axios.delete(linkdel + x.id, {
+                        headers: {
+                            Authorization: localStorage.getItem('token')
+                        }
+                    })
+                })
+
+            })
+
+                const logout = document.getElementById('logout')
+                logout.addEventListener('click', async() => {
+                    localStorage.removeItem('token')
+                    window.location.href = 'admin.html'
+                })
+
+
+        })()
+
+    </script>
+
+</body>
+
+</html>

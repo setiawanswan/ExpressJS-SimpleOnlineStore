@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>product</title>
+    <link rel="stylesheet" href="/public/stylesheets/myproduct.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <nav>
+        <div class="menu-icon">
+            <nav class="navbar navbar-inverse">
+                <div>
+                    <ul class="nav navbar-nav">
+                        <!-- <li><a class="navbar-brand" href="#">Paten Coffe Beans</a></li> -->
+                        <li class="active"><a href="cover.html">Home</a></li>
+                        <li><a href="login.html">Login</a></li>
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </nav>
+    <h1>Paten Coffe Beans</h1>
+
+    <div class="flex" id="data">
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+
+    <script async>
+
+
+        (async () => {
+            console.log('halo')
+            const data = []
+            let cart = []
+            const link = 'http://localhost:3000/api/production'
+            const linkproduct = await axios.get(link)
+            const result = linkproduct.data
+
+            console.log('hallo')
+
+            result.map(x => {
+                $('#data').append(
+                    `<img src="/public/images/columbia.jpg" alt="" style="width: 400px; height:400px; margin-bottom: 70px; margin-left:50px;">
+            
+            <ul style="margin-top:70px;">
+                <li>Price : ${x.price}</li>
+                <li>Brand : ${x.brand}</li>
+                <li>Type : ${x.type}</li>
+                <li>Roast : ${x.roast}</li>
+                <li>Weight : ${x.weight}</li>
+                <li> <button class="btn buy" id="buy" data-price="40000" data-name='Colombia' data-quantity="1">+</button></li>
+            </ul>`
+            
+                )
+            })
+
+            function Item(data) {
+                this.id = data.id
+                this.name = data.name
+                this.price = data.price
+                this.count = data.count
+
+            }
+
+            function saveCart() {
+                localStorage.setItem('cart', JSON.stringify(cart))
+            }
+
+            function loadCart() {
+                cart = JSON.parse(localStorage.getItem('cart'))
+                if (cart === null) {
+                    cart = []
+                }
+            }
+            loadCart()
+
+            function addItemToCart(data) {
+                for (let i in cart) {
+                    if (cart[i].id === data.id) {
+                        cart[i].count += data.count
+                        saveCart()
+                        return;
+                    }
+                }
+                console.log('addItemToCart:', data)
+                let item = new Item(data)
+                cart.push(item)
+                saveCart()
+            }
+
+            const log = document.getElementById('logout')
+            log.addEventListener('click', async () => {
+                localStorage.removeItem('token')
+                window.location.href = 'cover.html'
+            })
+
+        })()
+
+    </script>
+</body>
+
+</html>

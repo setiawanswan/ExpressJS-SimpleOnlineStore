@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>regist</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/public/stylesheets/regist.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    
+</head>
+<body>
+    <div class="show-login-btn"></div>
+    <div class="login-box">
+            <div class="hide-login-btn"></div>
+        <!-- <form class="login-form" action="login.html" method="POST"> -->
+            <div class="login-form">
+            <h1>WELCOME</h1>
+            <input class="txtb" type="text" name="" placeholder="Firstname" id="Firstname">
+            <input class="txtb" type="text" name="" placeholder="Lastname" id="Lastname">
+            <input class="txtb" type="text" name="" placeholder="Contact" id="Contact">
+            <input class="txtb" type="text" name="" placeholder="Address" id="Address">
+            <input class="txtb" type="email" name="" placeholder="Email" id="Email">
+            <input class="txtb" type="password" name="" placeholder="Password" id="Password">
+            <input class="txtb" type="text" name="" placeholder="Role" id="Role">
+            <input class="txtb" type="text" name="" placeholder="Status" id="Status">
+           <a href="1.html"><button class="login-btn" id="kirim">REGIST</button></a> 
+            </div>
+            <!-- <input class="login-btn" type="submit" name="" value="Regist" id="kirim"> -->
+        <!-- </form> -->
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+
+    <script>
+
+        const kirim = document.getElementById('kirim')
+        
+        kirim.addEventListener('click', async() => {
+            const Firstname = document.getElementById('Firstname').value
+            const Lastname = document.getElementById('Lastname').value
+            const Contact = document.getElementById('Contact').value
+            const Address = document.getElementById('Address').value
+            const Email = document.getElementById('Email').value
+            const Password = document.getElementById('Password').value
+            const Role = document.getElementById('Role').value
+            const Status = document.getElementById('Status').value
+            
+            
+            try {
+            const data = await axios.post('http://localhost:3000/api/regist',{
+                firstname: Firstname,
+                lastname: Lastname,
+                contact: Contact,
+                address: Address,
+                email: Email,
+                password: Password,
+                role: Role,
+                status: Status,
+            })
+            console.log(data.data)
+            console.log(data.data.token)
+            if (data.data.token) {
+                localStorage.setItem('token',`Bearer ${data.data.token}`) 
+                // window.location ='login.html'
+            }
+        } catch (error) {
+            console.log(error)
+        }
+        })
+
+        
+    </script>
+
+</body>
+</html>
