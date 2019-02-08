@@ -25,7 +25,7 @@
             <input class="txtb" type="password" name="" placeholder="Password" id="Password">
             <input class="txtb" type="text" name="" placeholder="Role" id="Role">
             <input class="txtb" type="text" name="" placeholder="Status" id="Status">
-           <a href="1.html"><button class="login-btn" id="kirim">REGIST</button></a> 
+          <a href="cover.html"> <button class="login-btn" id="kirim">REGIST</button> </a>
             </div>
             <!-- <input class="login-btn" type="submit" name="" value="Regist" id="kirim"> -->
         <!-- </form> -->
@@ -64,7 +64,7 @@
             console.log(data.data.token)
             if (data.data.token) {
                 localStorage.setItem('token',`Bearer ${data.data.token}`) 
-                // window.location ='login.html'
+                // window.location.href = 'cover.html'
             }
         } catch (error) {
             console.log(error)

@@ -50,15 +50,17 @@
 
             result.map(x => {
                 $('#data').append(
-                    `<img src="/public/images/columbia.jpg" alt="" style="width: 400px; height:400px; margin-bottom: 70px; margin-left:50px;">
+                    `<img src="/upload/${x.image}" alt="" style="width: 400px; height:400px; margin-bottom: 70px; margin-left:50px;">
             
-            <ul style="margin-top:70px;">
+            <ul style="margin-top:60px;">
+                <li>Name : ${x.nameProduct}</li>
                 <li>Price : ${x.price}</li>
                 <li>Brand : ${x.brand}</li>
                 <li>Type : ${x.type}</li>
                 <li>Roast : ${x.roast}</li>
                 <li>Weight : ${x.weight}</li>
-                <li> <button class="btn buy" id="buy" data-price="40000" data-name='Colombia' data-quantity="1">+</button></li>
+                
+                <li> <button class="btn buy" id="buy" data-id ="${x.id}" data-price="${x.price}" data-name='${x.nameProduct}'>+</button></li>
             </ul>`
             
                 )
@@ -97,12 +99,6 @@
                 cart.push(item)
                 saveCart()
             }
-
-            const log = document.getElementById('logout')
-            log.addEventListener('click', async () => {
-                localStorage.removeItem('token')
-                window.location.href = 'cover.html'
-            })
 
         })()
 

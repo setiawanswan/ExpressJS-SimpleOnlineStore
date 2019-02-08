@@ -12,4 +12,10 @@ h2{
     text-align: center
 }
 
+.www {
+    width: 120px;
+    padding: 10px;
+    border: 1px solid gray;
+    margin: 0;
+}
 

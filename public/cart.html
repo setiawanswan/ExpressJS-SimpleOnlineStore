@@ -7,6 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/public/stylesheets/cart.css">
+    <title>Cart</title>
 </head>
 
 <body>
@@ -18,19 +19,56 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th>Id</th>
                         <th>Name Product</th>
                         <th>Price $</th>
                         <th>Quantity</th>
+                        <th>Total</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody id="hasil">
 
                 </tbody>
+
+
             </table>
+
         </div>
     </div>
+    <div class="container">
+        <h2 style="text-align:right">Summary</h2>
+        <p style="text-align:right; font-size:18px;  ">Please Check Your Order Here!!</p>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody id="total">
+
+            </tbody>
+        </table>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Delivery Service</th>
+                    <th>Province <select name="Province" id="Province"></select></th>
+                    <th>City <select name="City" id="City"></select></th>
+                    <th>Cost <select name="Cost" id="Cost"></select></th>
+                </tr>
+            </thead>
+            <tbody id="total">
+
+            </tbody>
+        </table>
+
+        <button style="font-size:17px" type="button" class="btn btn-danger" id="pay">Purchase</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.10.0/js/md5.js"></script>
 
     <script async>
         (async () => {
@@ -38,15 +76,95 @@
             let data = JSON.parse(localStorage.getItem('cart'));
 
             console.log(data)
-            
+
             data.map(x => {
                 $('#hasil').append(` 
                 <tr>
-                    <td>${x.nameProduct}</td>
+                    <td>${x.id}</td>
+                    <td>${x.name}</td>
                     <td>${x.price}</td>
-                    <td>${x.stock}</td>
+                    <td>${x.count}</td>
+                    <td>${x.price * x.count}</td>   
+                    <td><button type="button" class="btn btn-warning" id="del">Delete</button></td>
                 </tr>`)
             })
+
+            const del = document.getElementById('del')
+            del.addEventListener('click', async () => {
+                localStorage.removeItem('cart')
+                window.location.href = 'cart.html'
+            })
+            let totalprice = data.map(x => x.price * x.count).reduce((a, b) => a + b);
+            $('#total').append(`
+            <tr>
+                <td>${totalprice}</td>
+            </tr>
+            `)
+
+
+            const pay = document.getElementById('pay')
+
+            pay.addEventListener('click', async () => {
+
+                try {
+                    const payment = await axios.post('http://localhost:3000/api/client', {
+                        data
+                    })
+
+                    window.location.href = payment.data.paymentUrl
+                } catch (error) {
+                    console.log(error)
+                }
+            })
+
+            const savedb = document.getElementById('pay')
+
+            savedb.addEventListener('click', async () => {
+
+                try {
+                    const transaction = await axios.post('http://localhost:3000/api/postpayment', {
+                        data
+                        
+                    })
+                } catch (error) {
+                    console.log(error)
+                }
+            })
+
+            const province = document.getElementById('Province')
+
+            province.addEventListener('click', async () => {
+                try {
+                    const prov = await axios.get('http://localhost:3000/api/getprovince')
+                    const result = prov.data
+                    result.map(propinsi => {
+                        $('#Province').append(`
+                        <option>${propinsi.province}</option>
+                        `)
+                    })
+
+
+                } catch (error) {
+                    console.log(error)
+                }
+            })
+
+            const city = document.getElementById('City')
+
+            city.addEventListener('click', async() => {
+                try {
+                    const cit = await axios.get('http://localhost:3000/api/getcity')
+                    const result = cit.data
+                    result.map(kota => {
+                        $('#City').append(`
+                        <option>${kota.city_name}</option>
+                        `)
+                    })
+                } catch (error) {
+                    
+                }
+            })
+
         })()
 
     </script>

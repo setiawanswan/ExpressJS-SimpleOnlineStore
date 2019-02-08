@@ -51,7 +51,7 @@
 
             result.map(x => {
                 $('#data').append(
-                    `<img src="/public/images/columbia.jpg" alt="" style="width: 400px; height:400px; margin-bottom: 70px; margin-left:50px;">
+                    `<img src="/upload/${x.image}" alt="" style="width: 400px; height:400px; margin-bottom: 70px; margin-left:50px;">
             
             <ul style="margin-top:60px;">
                 <li>Name : ${x.nameProduct}</li>
@@ -60,6 +60,7 @@
                 <li>Type : ${x.type}</li>
                 <li>Roast : ${x.roast}</li>
                 <li>Weight : ${x.weight}</li>
+                
                 <li> <button class="btn buy" id="buy" data-id ="${x.id}" data-price="${x.price}" data-name='${x.nameProduct}'>+</button></li>
             </ul>`
 
@@ -97,7 +98,7 @@
                 console.log('addItemToCart:', data)
                 let item = new Item(data)
                 cart.push(item)
-                saveCart()
+                    saveCart()
             }
 
             const buy = document.querySelectorAll(".btn")
@@ -123,7 +124,7 @@
                 localStorage.removeItem('token')
                 window.location.href = 'cover.html'
             })
-            
+
 
         })()
 

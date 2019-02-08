@@ -39,7 +39,8 @@
                 const result = await axios.post('http://localhost:3000/auth/login', {
                     
                     email: Email,
-                    password: Password
+                    password: Password,
+                    role: 1
                 })
             
                 console.log(result.data)

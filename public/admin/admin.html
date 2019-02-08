@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>admin</title>
-    <link rel="stylesheet" href="/public/stylesheets/admin.css">
+    <link rel="stylesheet" href="../stylesheets/admin.css">
 </head>
 
 <body>
@@ -31,12 +31,14 @@
 
                 const Email = document.getElementById('Email').value
                 const Password = document.getElementById('Password').value
+                const role = document.getElementById().value
 
                 try {
                     const result = await axios.post('http://localhost:3000/auth/admin', {
 
                         email: Email,
-                        password: Password
+                        password: Password,
+                        role: 2
                     })
 
                     console.log(result.data)

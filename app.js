@@ -2,6 +2,7 @@ let logger = require('morgan');
 let indexRouter = require('./routes/index');
 let authRouter = require('./routes/auth');
 // let profile = require('./routes/profile')
+
 let cors = require('cors')
 //Jwt
 let passport = require('passport')
