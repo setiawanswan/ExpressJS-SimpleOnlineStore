@@ -1,11 +1,10 @@
-h1{
+h1 {
     font-family: monospace;
     text-align: center;
     font-size: 45px
-
 }
 
-ul{
+ul {
     font-family: monospace;
     font-size: 20px;
     list-style: none;
@@ -14,12 +13,13 @@ ul{
     line-height: 40px
 }
 
-.list{
+.list {
     list-style-type: none;
     margin: 0;
     padding: 0;
     width: 20%;
-    background-color: #dddddd;;
+    background-color: #dddddd;
+    ;
     /* background-color: navajowhite; */
     position: fixed;
     height: 100%;
@@ -27,14 +27,14 @@ ul{
     font-size: 25px
 }
 
-.list a{
+.list a {
     display: block;
     color: #000;
     padding: 8px 20px;
     text-decoration: none;
 }
 
-.list{
+.list {
     color: white;
 }
 
@@ -43,7 +43,7 @@ ul{
     color: white;
 }
 
-.btn{
+.btn {
 
     display: inline-block;
     border-radius: 4px;
@@ -57,13 +57,14 @@ ul{
     transition: all 0.5s;
     cursor: pointer;
     margin: 5px;
-  }
+}
 
 .flex {
     display: flex;
     flex-wrap: wrap
 }
-.flex > div {
+
+.flex>div {
     width: 2000px;
     margin: 10px;
     text-align: center;
